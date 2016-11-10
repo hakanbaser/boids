@@ -7,18 +7,27 @@ var fps = require('fps')
 var attractors = [[
     Infinity // x
   , Infinity // y
-  , 250 // dist
+  , 550 // dist
   , 0.25 // spd
 ]]
 
 var canvas = document.createElement('canvas')
   , ctx = canvas.getContext('2d')
   , boids = Boids({
-      boids: 250
+      boids: 150
     , speedLimit: 2
     , accelerationLimit: 0.5
     , attractors: attractors
-  })
+  }
+  )
+
+function set_boids(amount)
+{
+  var boidLimit = document.querySelector('[boid-limit]')
+    boidLimit.innerHTML=amount;
+  var countText = document.querySelector('[data-count]')
+    countText.innerHTML = String(boids.boids)
+}
 
 document.body.onmousemove = function(e) {
   var halfHeight = canvas.height/2
@@ -65,7 +74,7 @@ var boidLimit = document.querySelector('[boid-limit]')
 var frames = fps({ every: 10, decay: 0.04 }).on('data', function(rate) {
   for (var i = 0; i < 3; i += 1) {
     if (rate <= 56 && boids.boids.length > 10) boids.boids.pop()
-    if (rate >= 60 && boids.boids.length < boidLimit) boids.boids.push([0,0,Math.random()*6-3,Math.random()*6-3,0,0])
+    if (rate >= 60 && boids.boids.length < boidLimit) boids.boids.push([0,0,Math.random()*10-5,Math.random()*10-5,0,0])
   }
   frameText.innerHTML = String(Math.round(rate))
   countText.innerHTML = String(boids.boids.length)
@@ -375,7 +384,7 @@ function Boids(opts, callback) {
   this.alignmentDistance = Math.pow(opts.alignmentDistance || 400, 2)
   this.cohesionDistance = Math.pow(opts.cohesionDistance || 400, 2)
   this.separationForce = opts.separationForce || 0.01
-  this.cohesionForce = opts.cohesionForce || 1
+  this.cohesionForce = this.teamspirit || opts.cohesionForce || 1
   this.alignmentForce = opts.alignmentForce || opts.alignment || 1
   this.attractors = opts.attractors || []
 
