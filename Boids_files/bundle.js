@@ -398,13 +398,16 @@ inherits(Boids, EventEmitter)
 
 Boids.prototype.tick = function() {
 
-  var individualgoals = document.querySelector('[individual-goals]')
-  var teamspirit = document.querySelector('[teamspirit]')
-  var transparency = 100*(document.querySelector('[transparency]')?1:0)
+  var individualgoals = document.getElementById("individualgoals").checked?1:0.01
+  var teamspirit = document.getElementById('teamspirit').checked?1:0
 
-  this.cohesionDistance = Math.pow(transparency, 2)
-  this.separationForce = individualgoals?1:0 // || opts.separationForce || 0.01
-  this.cohesionForce = teamspirit?1:0 // || opts.cohesionForce || 1
+  document.getElementById('config-display').innerHTML= ( individualgoals || "No" ) + " - " + document.getElementById("boid-limit").value + " - " + teamspirit
+
+//  var transparency = 100*(document.querySelector('[transparency]')?1:0)
+
+//  this.cohesionDistance = Math.pow(transparency.value, 2)
+  this.separationForce = individualgoals // || opts.separationForce || 0.01
+  this.cohesionForce = teamspirit // || opts.cohesionForce || 1
 
 
   var boids = this.boids
