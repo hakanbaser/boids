@@ -52,21 +52,23 @@
             Boid-Limit: <input type="text" id="boid-limit" value="100" ></input> 
           </p>
           <p>
-            Transparency: <input type="checkbox" id="transparency" value="1" ></input> 
+            Transparency: <input type="checkbox" id="transparency" checked ></input> 
           </p>
+          <div>
+            Individual Goals: <input type="checkbox" id="individualgoals" unchecked></input> 
+          </div>
           <p>
-            Individual Goals: <input type="checkbox" id="individual-goals" value="1"></input> 
-          </p>
-          <p>
-            Team Spirit: <input type="checkbox" id="teamspirit" value="1"></input> 
+            Team Spirit: <input type="checkbox" id="teamspirit" checked></input> 
           </p>
           <p>
             Right now you're watching <strong id="data-count">1</strong> boids being
             simulated at <strong id="data-fps">60</strong> frames per second.
           </p>
           <p class="source">
-            <a href="http://github.com/hughsk/boids">Source on GitHub</a>
+            <a href="http://github.com/hughsk/boids">Source on GitHub</a><br />
+            Config:<br />
           </p>
+          <div id="config-display"></div>
         </div>
       </article>
       <script type="text/javascript" src="./Boids_files/bundle.js"></script><canvas width="1042" height="794"></canvas>
