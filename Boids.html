@@ -45,14 +45,20 @@
         <h1 id="title">boids</h1>
         <div id="description">
           <p>
-            This is a lightweight 2D JavaScript implementation of Craig Reynolds'
+            This simulator for organizational behaviour is based on Craig Reynolds'
             <a href="http://en.wikipedia.org/wiki/Boids">Boids</a> algorithm.
-            It's a classic example of <em>emergence</em>
-            and a suprisingly simple way of mimicking
-            not only flocks, but any form of swarm or herd or crowd.
           </p>
           <p>
-            Boid-Limit: <input type="text" boid-limit="100"></input> 
+            Boid-Limit: <input type="text" id="boid-limit" value="100" onchange="set_boids(boid-limit)"></input> 
+          </p>
+          <p>
+            Transparency: <input type="checkbox" id="transparency" value="1"></input> 
+          </p>
+          <p>
+            Individual Goals: <input type="checkbox" id="individual-goals" value="1"></input> 
+          </p>
+          <p>
+            Team Spirit: <input type="checkbox" id="teamspirit" value="1"></input> 
           </p>
           <p>
             Right now you're watching <strong data-count="">1</strong> boids being
