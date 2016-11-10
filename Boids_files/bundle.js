@@ -373,7 +373,7 @@ function Boids(opts, callback) {
   this.accelerationLimitRoot = opts.accelerationLimit || 1
   this.speedLimit = Math.pow(this.speedLimitRoot, 2)
   this.accelerationLimit = Math.pow(this.accelerationLimitRoot, 2)
-  this.separationDistance = Math.pow(opts.separationDistance || 100, 2)
+  this.separationDistance = Math.pow(opts.separationDistance || 40, 2)
   this.alignmentDistance = Math.pow(opts.alignmentDistance || 400, 2)
   this.cohesionDistance = Math.pow(opts.cohesionDistance || 400, 2)
   this.separationForce = opts.separationForce || 0.01
@@ -398,17 +398,20 @@ inherits(Boids, EventEmitter)
 
 Boids.prototype.tick = function() {
 
-  var individualgoals = document.getElementById("individualgoals").checked?1:0.01
+  var individualgoals = document.getElementById("individualgoals").checked?1:0.05
   var teamspirit = document.getElementById('teamspirit').checked?1:0
+  var alignment = document.getElementById('alignment').checked?1:0.01
+  var transparency = document.getElementById('transparency').checked?10000:1
 
-  document.getElementById('config-display').innerHTML= ( individualgoals || "No" ) + " - " + document.getElementById("boid-limit").value + " - " + teamspirit
+  document.getElementById('config-display').innerHTML= ( individualgoals || "No" ) + " - " + document.getElementById("boid-limit").value + " - " + teamspirit + " - " + transparency + " - " + alignment
 
-//  var transparency = 100*(document.querySelector('[transparency]')?1:0)
 
 //  this.cohesionDistance = Math.pow(transparency.value, 2)
   this.separationForce = individualgoals // || opts.separationForce || 0.01
   this.cohesionForce = teamspirit // || opts.cohesionForce || 1
-
+  this.cohesionDistance= Math.pow(transparency,2)
+  this.aliForce=alignment
+//  this.alignmentDistance=500-transparency
 
   var boids = this.boids
     , sepDist = this.separationDistance
