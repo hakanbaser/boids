@@ -14,7 +14,7 @@ var attractors = [[
 var canvas = document.createElement('canvas')
   , ctx = canvas.getContext('2d')
   , boids = Boids({
-      boids: 150
+      boids: 550
     , speedLimit: 2
     , accelerationLimit: 0.5
     , attractors: attractors
@@ -382,9 +382,9 @@ function Boids(opts, callback) {
   this.accelerationLimit = Math.pow(this.accelerationLimitRoot, 2)
   this.separationDistance = Math.pow(opts.separationDistance || 100, 2)
   this.alignmentDistance = Math.pow(opts.alignmentDistance || 400, 2)
-  this.cohesionDistance = Math.pow(opts.cohesionDistance || 400, 2)
+  this.cohesionDistance = Math.pow(opts.cohesionDistance || transparency, 2)
   this.separationForce = opts.separationForce || 0.01
-  this.cohesionForce = this.teamspirit || opts.cohesionForce || 1
+  this.cohesionForce = opts.cohesionForce || 1
   this.alignmentForce = opts.alignmentForce || opts.alignment || 1
   this.attractors = opts.attractors || []
 
@@ -404,6 +404,16 @@ function Boids(opts, callback) {
 inherits(Boids, EventEmitter)
 
 Boids.prototype.tick = function() {
+
+  var individualgoals = document.querySelector('[individual-goals]')
+  var teamspirit = document.querySelector('[teamspirit]')
+  var transparency = 100*(document.querySelector('[transparency]')?1:0)
+
+  this.cohesionDistance = Math.pow(transparency, 2)
+  this.separationForce = individualgoals?1:0 // || opts.separationForce || 0.01
+  this.cohesionForce = teamspirit?1:0 // || opts.cohesionForce || 1
+
+
   var boids = this.boids
     , sepDist = this.separationDistance
     , sepForce = this.separationForce
