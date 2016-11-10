@@ -7,7 +7,7 @@ var fps = require('fps')
 var attractors = [[
     Infinity // x
   , Infinity // y
-  , 550 // dist
+  , 150 // dist
   , 0.25 // spd
 ]]
 
@@ -372,9 +372,9 @@ function Boids(opts, callback) {
   this.speedLimitRoot = opts.speedLimit || 0
   this.accelerationLimitRoot = opts.accelerationLimit || 1
   this.speedLimit = Math.pow(this.speedLimitRoot, 2)
-  this.accelerationLimit = Math.pow(this.accelerationLimitRoot, 2)
+  this.accelerationLimit = Math.pow(this.accelerationLimitRoot, 5)
   this.separationDistance = Math.pow(opts.separationDistance || 40, 2)
-  this.alignmentDistance = Math.pow(opts.alignmentDistance || 400, 2)
+  this.alignmentDistance = Math.pow(opts.alignmentDistance || 100, 2)
   this.cohesionDistance = Math.pow(opts.cohesionDistance || 400, 2)
   this.separationForce = opts.separationForce || 0.01
   this.cohesionForce = opts.cohesionForce || 1
@@ -400,17 +400,18 @@ Boids.prototype.tick = function() {
 
   var individualgoals = document.getElementById("individualgoals").checked?1:0.05
   var teamspirit = document.getElementById('teamspirit').checked?1:0
-  var alignment = document.getElementById('alignment').checked?1:0.01
+  var vision = document.getElementById('vision').checked?0.5:1
   var transparency = document.getElementById('transparency').checked?10000:1
-
-  document.getElementById('config-display').innerHTML= ( individualgoals || "No" ) + " - " + document.getElementById("boid-limit").value + " - " + teamspirit + " - " + transparency + " - " + alignment
-
+  var focus = document.getElementById('focus').checked?10:150
+  var experimentation =document.getElementById('experimentation').checked?5:0.1
 
 //  this.cohesionDistance = Math.pow(transparency.value, 2)
   this.separationForce = individualgoals // || opts.separationForce || 0.01
   this.cohesionForce = teamspirit // || opts.cohesionForce || 1
   this.cohesionDistance= Math.pow(transparency,2)
-  this.aliForce=alignment
+  this.separationDistance =Math.pow(focus,2)
+  this.alignmentForce=vision
+//  this.accelerationLimit = Math.pow(0.1 , experimentation)
 //  this.alignmentDistance=500-transparency
 
   var boids = this.boids
