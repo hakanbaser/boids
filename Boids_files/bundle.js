@@ -11,7 +11,6 @@ var attractors = [[
   , 0.25 // spd
 ]]
 
-var lastGoalPosition={x:0,y:0}
 
 var canvas = document.createElement('canvas')
   , ctx = canvas.getContext('2d')
@@ -22,6 +21,8 @@ var canvas = document.createElement('canvas')
     , attractors: attractors
   }
   )
+
+var lastGoalPosition={x:window.innerWidth/2+10,y:window.innerHeight/2+11}
 
  canvas.onclick = function(e) {
 //    alert(e.x + " . " + e.y);
@@ -70,7 +71,7 @@ ticker(window, 60).on('tick', function() {
     , halfHeight = canvas.height/2
     , halfWidth = canvas.width/2
 
-  ctx.fillStyle = 'rgba(32,241,235,0.05)' // '#FFF1EB'
+  ctx.fillStyle = 'rgba(32,241,235,0.05)' 
   ctx.fillRect(0, 0, canvas.width, canvas.height)
 
   ctx.fillStyle = '#243D5E'
@@ -421,17 +422,15 @@ inherits(Boids, EventEmitter)
 
 Boids.prototype.tick = function() {
 
-  var individualgoals = 1 - document.getElementById("individualgoals").value //checked?0.05:1
-  var teamspirit = document.getElementById('teamspirit').value //.checked?1:0
-  var vision = 1 - document.getElementById('vision').value // .checked?0.5:1
- // var transparency = document.getElementById('transparency').checked?10000:1
+  var individualgoals = 1 - document.getElementById("individualgoals").value 
+  var teamspirit = document.getElementById('teamspirit').value 
+  var vision = 1 - document.getElementById('vision').value 
   var transparency = document.getElementById('transparency').value
   var focus = 100 - document.getElementById('focus').value // checked?1:150
 //  var experimentation =document.getElementById('experimentation').checked?5:0.1
 
-//  this.cohesionDistance = Math.pow(transparency.value, 2)
-  this.separationForce = individualgoals // || opts.separationForce || 0.01
-  this.cohesionForce = teamspirit // || opts.cohesionForce || 1
+  this.separationForce = individualgoals 
+  this.cohesionForce = teamspirit 
   this.cohesionDistance= Math.pow(transparency,2)
   this.separationDistance =Math.pow(focus,2)
   this.alignmentForce=vision
