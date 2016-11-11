@@ -1,102 +1,98 @@
 <!DOCTYPE html>
 <!-- saved from url=(0023)http://hughsk.io/boids/ -->
 <html class="no-js"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-        <title>Boids</title>
-        <meta name="viewport" content="width=device-width">
-        <link href="./Boids_files/css" rel="stylesheet" type="text/css">
-        <style type="text/css">
-          html, body {
-            margin:0;
-            padding:0;
-            font-family:'Open Sans', Helvetica, Arial, sans-serif;
-            color:#543D5E;
-            color:rgba(4,61,94,0.75);
-            background-color:#2CF1EB;
-          }
-          #title {
-            color:#543D5E;
-            font-size:2.5em;
-            color:rgba(84,61,94,0.9);
-            font-family: 'Roboto Slab', 'Times New Roman', Times, serif;
-            margin:0; padding:0;
-          }
-          a {
-            color:rgba(84,61,94,0.9);
-            text-decoration:none;
-            border-bottom:1px dotted #543D5E;
-          }
-          #text {
-            position:absolute;
-            max-width:300px;
-            top:16px;
-            left:16px;
-            background-color:rgba(255,241,235,0.55);
-            box-shadow:0 0 15px 5px rgba(32,241,235,0.55);
-          }
-          .source {
-            margin-bottom:0.5em;
-            font-size:14px;
-          }
-        </style>
-    </head>
-    <body style="margin: 0px; padding: 0px;">
-      <article role="main" id="text">
-        <h1 id="title">boids</h1>
-        <div id="description">
-          <p>
-            This simulator for organizational behaviour is based on Craig Reynolds'
-            <a href="http://en.wikipedia.org/wiki/Boids">Boids</a> algorithm.
-          </p>
-          <table>
-          <tr>
-            <th>            Boids:</th>
-            <th> <input type="range" id="boid-limit" min="10" max="1000" value="100" step="10"></input> </th>            
-          </tr>
-          <tr>
-            <th>            Transparency:</th>
-            <th> <input type="range" id="transparency" min="0" max="100" step="10" value="50"></input> 
-            </th>
-          </tr>
-          <tr>
-            <th>Alignment: </th>
-            <th><input type="range" id="individualgoals" min="0" max="1" step="0.1" value="0.5"></input> 
-            </th>
-          </tr>
-          <tr>
-            <th>  Team Spirit: 
+
+<title>Boids</title>
+<meta name="viewport" content="width=device-width">
+<link href="./Boids_files/css" rel="stylesheet" type="text/css">
+<style type="text/css">
+html, body {
+  margin:0;
+  padding:0;
+  font-family:'Open Sans', Helvetica, Arial, sans-serif;
+  color:#543D5E;
+  color:rgba(4,61,94,0.75);
+  background-color:#2CF1EB;
+}
+#title {
+  color:#543D5E;
+  font-size:2.5em;
+  color:rgba(84,61,94,0.9);
+  font-family: 'Roboto Slab', 'Times New Roman', Times, serif;
+  margin:0; padding:0;
+}
+a {
+  color:rgba(84,61,94,0.9);
+  text-decoration:none;
+  border-bottom:1px dotted #543D5E;
+}
+#text {
+  position:absolute;
+  max-width:300px;
+  top:16px;
+  left:16px;
+  background-color:rgba(255,241,235,0.55);
+  box-shadow:0 0 15px 5px rgba(32,241,235,0.55);
+}
+.source {
+  margin-bottom:0.5em;
+  font-size:14px;
+}
+
+</style>
+</head>
+<body style="margin: 0px; padding: 0px;">
+  <article role="main" id="text"> 
+    <h1 id="title">boids</h1>
+      <table>
+        <tr>
+          <th>Boids:</th>
+          <th> <input type="range" id="boid-limit" min="10" max="1000" value="100" step="10"></input> </th>            
+        </tr>
+        <tr>
+          <th>Transparency:</th>
+          <th> <input type="range" id="transparency" min="0" max="100" step="10" value="90"></input> 
           </th>
+        </tr>
+        <tr>
+          <th>Alignment: </th>
+          <th><input type="range" id="individualgoals" min="0" max="1" step="0.1" value="1"></input> 
+          </th>
+        </tr>
+        <tr>
+          <th>Team Spirit: </th>
           <th>
-          <input type="range"  id="teamspirit" min="0" max="1" step="0.1" value="0.5"></input> 
-        </th>
-      </tr>
-<tr>
-<th>            Clarity of vision:</th>
-<th> <input type="range" id="vision" min="0" max="1" step="0.1" ></input> 
-</th>
-</tr>
-<tr>
-  <th>            Execution Focus: 
-  </th>
-  <th></a><input type="range" id="focus" min="0" max="100" step="10" value="10"></input> 
-</th>
-</tr>
-<tr>
-<!--<th>            Experimentation: </th>
-<th><input type="checkbox" id="experimentation" unchecked></input> 
-</th>-->
+            <input type="range"  id="teamspirit" min="0" max="1" step="0.1" value="1"></input> 
+          </th>
+        </tr>
+        <tr>
+          <th>Clarity of vision:</th>
+          <th> <input type="range" id="vision" min="0" max="1" step="0.1" ></input> 
+          </th>
+        </tr>
+        <tr>
+          <th>Execution Focus: </th>
+          <th></a><input type="range" id="focus" min="0" max="100" step="10" value="80"></input> 
+          </th>
+        </tr>
+        <tr>
         </table>
-          <div>
-            Right now you're watching <strong id="data-count">1</strong> boids being
-            simulated at <strong id="data-fps">60</strong> frames per second.
-          </div>
-          <p class="source">
-            <a href="http://github.com/hughsk/boids">Original Source on GitHub</a><br />
-          </p>
-          <div id="config-display"></div>
+        <div>
+          Right now you're watching <strong id="data-count">1</strong> boids being
+          simulated at <strong id="data-fps">60</strong> frames per second.
+          <p></p>
         </div>
-      </article>
-      <script type="text/javascript" src="./Boids_files/bundle.js"></script><canvas width="1042" height="794"></canvas>
+    <div id="description">
+        This simulator for organizational behaviour is based on Craig Reynolds'
+        <a href="http://en.wikipedia.org/wiki/Boids">Boids</a> algorithm.
+        <p class="source">
+          <a href="http://github.com/hughsk/boids">Original Source on GitHub</a><br />
+        </p>
+        </div>
+   </article>
+    <div>
+    <script type="text/javascript" src="./Boids_files/bundle.js" id="drawing-area"></script>
+    </div>
     
 
-</body></html>
+  </body></html>
