@@ -11,6 +11,8 @@ var attractors = [[
   , 0.25 // spd
 ]]
 
+var lastGoalPosition={x:0,y:0}
+
 var canvas = document.createElement('canvas')
   , ctx = canvas.getContext('2d')
   , boids = Boids({
@@ -21,12 +23,32 @@ var canvas = document.createElement('canvas')
   }
   )
 
-document.body.onmousemove = function(e) {
-  var halfHeight = canvas.height/2
-    , halfWidth = canvas.width/2
+ canvas.onclick = function(e) {
+//    alert(e.x + " . " + e.y);
+    lastGoalPosition={x:e.x, y:e.y}
 
-  attractors[0][0] = e.x - halfWidth
-  attractors[0][1] = e.y - halfHeight
+    drawCircleAt(lastGoalPosition.x,lastGoalPosition.y)
+   var halfHeight = canvas.height/2
+     , halfWidth = canvas.width/2
+
+   attractors[0][0] = e.x - halfWidth
+   attractors[0][1] = e.y - halfHeight
+}
+
+function drawCircleAt(x,y){
+      //var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+      var centerX = x;
+      var centerY = y;
+      var radius = 10;
+
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = 'lime';
+      context.fill();
+      context.lineWidth = 5;
+      context.strokeStyle = 'green';
+      context.stroke();
 }
 
 window.onresize = debounce(function() {
@@ -40,6 +62,7 @@ document.body.style.padding = '0'
 document.body.appendChild(canvas)
 
 ticker(window, 60).on('tick', function() {
+  drawCircleAt(lastGoalPosition.x,lastGoalPosition.y)
   frames.tick()
   boids.tick()
 }).on('draw', function() {
@@ -404,7 +427,7 @@ Boids.prototype.tick = function() {
  // var transparency = document.getElementById('transparency').checked?10000:1
   var transparency = document.getElementById('transparency').value
   var focus = 100 - document.getElementById('focus').value // checked?1:150
-  var experimentation =document.getElementById('experimentation').checked?5:0.1
+//  var experimentation =document.getElementById('experimentation').checked?5:0.1
 
 //  this.cohesionDistance = Math.pow(transparency.value, 2)
   this.separationForce = individualgoals // || opts.separationForce || 0.01
