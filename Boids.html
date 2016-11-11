@@ -49,26 +49,40 @@
             <a href="http://en.wikipedia.org/wiki/Boids">Boids</a> algorithm.
           </p>
           <p>
-            Boid-Limit: <input type="text" id="boid-limit" value="100" ></input> 
+            Boids: <input type="range" id="boid-limit" min="10" max="1000" value="100" step="10"></input> 
           </p>
-          <p>
+<!--          <p>
             Transparency: <input type="checkbox" id="transparency" checked ></input> 
           </p>
+-->
+           <p>
+            Transparency: <input type="range" id="transparency" min="0" max="100" step="10" value="50"></input> 
+          </p>
+           
           <div>
-            Individual Goals: <input type="checkbox" id="individualgoals" unchecked></input> 
+            Alignment: <input type="range" id="individualgoals" min="0" max="1" step="0.1" value="0.5"></input> 
           </div>
           <p>
-            Team Spirit: <input type="checkbox" id="teamspirit" checked></input> 
+            Team Spirit: <input type="range"  id="teamspirit" min="0" max="1" step="0.1" value="0.5"></input> 
           </p>
-          <div>
+          <p>
+           <p>
+            Clarity of vision: <input type="range" id="vision" min="0" max="1" step="0.1" ></input> 
+          </p>
+<!--          <div>
             Vision: <input type="checkbox" id="vision" checked></input> 
-          </div>
+          </div>-->
+          </p>
+          <p>
           <div>
-            Focus: <input type="checkbox" id="focus" checked></input> 
+            Focus: <input type="range" id="focus" min="0" max="100" step="10" value="10"></input> 
           </div>
+          </p>
+          <p>
           <div>
             Experimentation: <input type="checkbox" id="experimentation" unchecked></input> 
           </div>
+          </p>
           <p>
             Right now you're watching <strong id="data-count">1</strong> boids being
             simulated at <strong id="data-fps">60</strong> frames per second.
