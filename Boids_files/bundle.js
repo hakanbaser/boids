@@ -7,7 +7,7 @@ var fps = require('fps')
 var attractors = [[
     Infinity // x
   , Infinity // y
-  , 150 // dist
+  , 1500 // dist
   , 0.25 // spd
 ]]
 
@@ -398,11 +398,12 @@ inherits(Boids, EventEmitter)
 
 Boids.prototype.tick = function() {
 
-  var individualgoals = document.getElementById("individualgoals").checked?1:0.05
-  var teamspirit = document.getElementById('teamspirit').checked?1:0
-  var vision = document.getElementById('vision').checked?0.5:1
-  var transparency = document.getElementById('transparency').checked?10000:1
-  var focus = document.getElementById('focus').checked?10:150
+  var individualgoals = 1 - document.getElementById("individualgoals").value //checked?0.05:1
+  var teamspirit = document.getElementById('teamspirit').value //.checked?1:0
+  var vision = 1 - document.getElementById('vision').value // .checked?0.5:1
+ // var transparency = document.getElementById('transparency').checked?10000:1
+  var transparency = document.getElementById('transparency').value
+  var focus = 100 - document.getElementById('focus').value // checked?1:150
   var experimentation =document.getElementById('experimentation').checked?5:0.1
 
 //  this.cohesionDistance = Math.pow(transparency.value, 2)
@@ -412,7 +413,7 @@ Boids.prototype.tick = function() {
   this.separationDistance =Math.pow(focus,2)
   this.alignmentForce=vision
 //  this.accelerationLimit = Math.pow(0.1 , experimentation)
-//  this.alignmentDistance=500-transparency
+//  this.alignmentDistance=10000-transparency
 
   var boids = this.boids
     , sepDist = this.separationDistance
