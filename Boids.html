@@ -48,48 +48,50 @@
             This simulator for organizational behaviour is based on Craig Reynolds'
             <a href="http://en.wikipedia.org/wiki/Boids">Boids</a> algorithm.
           </p>
-          <p>
-            Boids: <input type="range" id="boid-limit" min="10" max="1000" value="100" step="10"></input> 
-          </p>
-<!--          <p>
-            Transparency: <input type="checkbox" id="transparency" checked ></input> 
-          </p>
--->
-           <p>
-            Transparency: <input type="range" id="transparency" min="0" max="100" step="10" value="50"></input> 
-          </p>
-           
+          <table>
+          <tr>
+            <th>            Boids:</th>
+            <th> <input type="range" id="boid-limit" min="10" max="1000" value="100" step="10"></input> </th>            
+          </tr>
+          <tr>
+            <th>            Transparency:</th>
+            <th> <input type="range" id="transparency" min="0" max="100" step="10" value="50"></input> 
+            </th>
+          </tr>
+          <tr>
+            <th>Alignment: </th>
+            <th><input type="range" id="individualgoals" min="0" max="1" step="0.1" value="0.5"></input> 
+            </th>
+          </tr>
+          <tr>
+            <th>  Team Spirit: 
+          </th>
+          <th>
+          <input type="range"  id="teamspirit" min="0" max="1" step="0.1" value="0.5"></input> 
+        </th>
+      </tr>
+<tr>
+<th>            Clarity of vision:</th>
+<th> <input type="range" id="vision" min="0" max="1" step="0.1" ></input> 
+</th>
+</tr>
+<tr>
+  <th>            Execution Focus: 
+  </th>
+  <th></a><input type="range" id="focus" min="0" max="100" step="10" value="10"></input> 
+</th>
+</tr>
+<tr>
+<!--<th>            Experimentation: </th>
+<th><input type="checkbox" id="experimentation" unchecked></input> 
+</th>-->
+        </table>
           <div>
-            Alignment: <input type="range" id="individualgoals" min="0" max="1" step="0.1" value="0.5"></input> 
-          </div>
-          <p>
-            Team Spirit: <input type="range"  id="teamspirit" min="0" max="1" step="0.1" value="0.5"></input> 
-          </p>
-          <p>
-           <p>
-            Clarity of vision: <input type="range" id="vision" min="0" max="1" step="0.1" ></input> 
-          </p>
-<!--          <div>
-            Vision: <input type="checkbox" id="vision" checked></input> 
-          </div>-->
-          </p>
-          <p>
-          <div>
-            Focus: <input type="range" id="focus" min="0" max="100" step="10" value="10"></input> 
-          </div>
-          </p>
-          <p>
-          <div>
-            Experimentation: <input type="checkbox" id="experimentation" unchecked></input> 
-          </div>
-          </p>
-          <p>
             Right now you're watching <strong id="data-count">1</strong> boids being
             simulated at <strong id="data-fps">60</strong> frames per second.
-          </p>
+          </div>
           <p class="source">
-            <a href="http://github.com/hughsk/boids">Source on GitHub</a><br />
-            Config:<br />
+            <a href="http://github.com/hughsk/boids">Original Source on GitHub</a><br />
           </p>
           <div id="config-display"></div>
         </div>
