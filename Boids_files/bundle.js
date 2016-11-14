@@ -24,8 +24,11 @@ var canvas = document.createElement('canvas')
 
 var lastGoalPosition={x:window.innerWidth/2+10,y:window.innerHeight/2+11}
 
+ //var canvas = document.getElementById('canvas');
+
  canvas.onclick = function(e) {
-//    alert(e.x + " . " + e.y);
+
+   // alert(e.x + " . " + e.y);
     lastGoalPosition={x:e.x, y:e.y}
 
     drawCircleAt(lastGoalPosition.x,lastGoalPosition.y)
@@ -34,10 +37,10 @@ var lastGoalPosition={x:window.innerWidth/2+10,y:window.innerHeight/2+11}
 
    attractors[0][0] = e.x - halfWidth
    attractors[0][1] = e.y - halfHeight
-}
+//   alert(e.x + " " + e.y)
+ }
 
 function drawCircleAt(x,y){
-      //var canvas = document.getElementById('canvas');
       var context = canvas.getContext('2d');
       var centerX = x;
       var centerY = y;
@@ -50,12 +53,13 @@ function drawCircleAt(x,y){
       context.lineWidth = 5;
       context.strokeStyle = 'green';
       context.stroke();
+      
 }
 
 window.onresize = debounce(function() {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
-}, 100)
+ }, 100)
 window.onresize()
 
 document.body.style.margin = '0'
@@ -98,6 +102,8 @@ var frames = fps({ every: 10, decay: 0.04 }).on('data', function(rate) {
 })
 
 },{"fps":2,"ticker":3,"./":4,"debounce":5}],5:[function(require,module,exports){
+
+// Obere Funktion wird hier abgeschlossen HB
 
 /**
  * Debounces a function by the given threshold.
