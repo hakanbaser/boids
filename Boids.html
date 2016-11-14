@@ -96,27 +96,61 @@ th:hover span.tooltip {
 
 
       var controls=[
-      {id:"focus",label:"Execution Focus",tooltip:"Mouse Over Execution Focus:",min:0,max:100,step:10,value:80},
-      {id:"vision",label:"Clarity of Vision",tooltip:"Mouse Over Clarity of Vision:",min:0,max:1,step:0.1,value:1},
-      {id:"teamspirit",label:"Team Spirit",tooltip:"Mouse Over Team Spirit:",min:0,max:1,step:0.1,value:1},
-      {id:"individualgoals",label:"Alignment",tooltip:"Mouse Over Alignment",min:0,max:1,step:0.1,value:1},
-      {id:"transparency",label:"Transparency",tooltip:"Mouse Over Transparency:",min:0,max:100,step:10,value:90},
-      {id:"boid-limit",label:"Organisation size",tooltip:"Mouse Over Organisation Size:",min:10,max:1000,step:10,value:100},
+      {
+      id:"focus",
+      label:"Execution Focus",min:0,max:100,step:10,value:80,
+      tooltip:
+      "Mouse Over Execution Focus:<br>Stuff"
+      },
+
+      {
+        id:"vision",
+      label:"Clarity of Vision",min:0,max:1,step:0.1,value:1,
+      tooltip:
+      "Mouse Over Clarity of Vision:"
+      },
+
+      { 
+       id:"teamspirit",
+       label:"Team Spirit",min:0,max:1,step:0.1,value:1,
+       tooltip:
+       "Mouse Over Team Spirit:"
+       },
+
+      {
+        id:"individualgoals",
+        label:"Alignment",min:0,max:1,step:0.1,value:1,
+        tooltip:
+        "Mouse Over Alignment"
+      },
+
+      {
+        id:"transparency",
+        label:"Transparency",min:0,max:100,step:10,value:90,
+        tooltip:"Mouse Over Transparency:"
+      },
+
+      {
+        id:"boid-limit",
+        label:"Organisation size",min:10,max:1000,step:10,value:100,
+        tooltip:
+        "Mouse Over Organisation Size:"
+      },
       ]
       var myTable=document.getElementById("Controls")
 
       for (var i in controls)
       {
         var item=controls[i]
-      var myRow=myTable.insertRow(0)
-      var myTH1=document.createElement("th")
-      myTH1.innerHTML=item.label+': <span class="tooltip">'+item.tooltip+'</span>'
-      myTH1.align="left"
-      myRow.appendChild(myTH1)
+        var myRow=myTable.insertRow(0)
+        var myTH1=document.createElement("th")
+        myTH1.innerHTML=item.label+': <span class="tooltip">'+item.tooltip+'</span>'
+        myTH1.align="left"
+        myRow.appendChild(myTH1)
       
-      var myTH2=document.createElement("th")
-      myTH2.innerHTML='<input type="range" id="'+item.id+'" min="'+item.min+'" max="'+item.max+'" step="'+item.step+'" value="'+item.value+'"></input>' 
-      myRow.appendChild(myTH2)
+        var myTH2=document.createElement("th")
+        myTH2.innerHTML='<input type="range" id="'+item.id+'" min="'+item.min+'" max="'+item.max+'" step="'+item.step+'" value="'+item.value+'"></input>' 
+        myRow.appendChild(myTH2)
       }
 //      myCell1.innerHTML=myLabel+': <span class="tooltip">'+myTooltip+'</span>'
     }
