@@ -16,7 +16,7 @@ html, body {
 }
 #title {
   color:#543D5E;
-  font-size:2.5em;
+  font-size:1.5em;
   color:rgba(84,61,94,0.9);
   font-family: 'Roboto Slab', 'Times New Roman', Times, serif;
   margin:0; padding:0;
@@ -36,53 +36,45 @@ a {
 }
 .source {
   margin-bottom:0.5em;
-  font-size:14px;
+  font-size:12px;
+}
+
+th span.tooltip {
+    display:none;
+}
+
+th:hover span.tooltip {
+  position:absolute;
+  top:250px;
+  left:0px;
+  height: 240px;
+  width: 300px;
+  display:inline;
+  border:2px solid green;
+  background-color: white;
+  font-size: 12px;
 }
 
 </style>
+<script>
+    </script>
 </head>
 <body style="margin: 0px; padding: 0px;">
   <article role="main" id="text"> 
-    <h1 id="title">boids</h1>
-      <table>
-        <tr>
-          <th>Boids:</th>
-          <th> <input type="range" id="boid-limit" min="10" max="1000" value="100" step="10"></input> </th>            
-        </tr>
-        <tr>
-          <th>Transparency:</th>
-          <th> <input type="range" id="transparency" min="0" max="100" step="10" value="90"></input> 
-          </th>
-        </tr>
-        <tr>
-          <th>Alignment: </th>
-          <th><input type="range" id="individualgoals" min="0" max="1" step="0.1" value="1"></input> 
-          </th>
-        </tr>
-        <tr>
-          <th>Team Spirit: </th>
-          <th>
-            <input type="range"  id="teamspirit" min="0" max="1" step="0.1" value="1"></input> 
-          </th>
-        </tr>
-        <tr>
-          <th>Clarity of vision:</th>
-          <th> <input type="range" id="vision" min="0" max="1" step="0.1" ></input> 
-          </th>
-        </tr>
-        <tr>
-          <th>Execution Focus: </th>
-          <th></a><input type="range" id="focus" min="0" max="100" step="10" value="80"></input> 
-          </th>
-        </tr>
-        <tr>
-        </table>
+    <h1 id="title">Organisation Simulator</h1>
+    <p></p>
+      <div>
+      <table id="Controls">
+       </table>
+      </div>
+        <p></p>
         <div>
           Right now you're watching <strong id="data-count">1</strong> boids being
           simulated at <strong id="data-fps">60</strong> frames per second.
           <p></p>
         </div>
     <div id="description">
+        Hover over the description to learn what the sliders do.<p>
         This simulator for organizational behaviour is based on Craig Reynolds'
         <a href="http://en.wikipedia.org/wiki/Boids">Boids</a> algorithm.
         <p class="source">
@@ -91,8 +83,44 @@ a {
         </div>
    </article>
     <div>
-    <script type="text/javascript" src="./Boids_files/bundle.js" id="drawing-area"></script>
-    </div>
-    
+      <script type="text/javascript" id="drawing-area">
+     if(navigator.userAgent.indexOf("Chrome") == -1 )
+    {
+        document.documentElement.innerHTML = 'This script only works for chrome. <p><img src="http://emojipedia-us.s3.amazonaws.com/cache/a3/44/a3444828bb3ffe489a2699304a629727.png"></img>'
+    }
+    else 
+    {
+      var myscript = document.createElement('script')
+      myscript.src="./Boids_files/bundle.js"
+      document.head.appendChild(myscript);
 
-  </body></html>
+
+      var controls=[
+      {id:"focus",label:"Execution Focus",tooltip:"Mouse Over Execution Focus:",min:0,max:100,step:10,value:80},
+      {id:"vision",label:"Clarity of Vision",tooltip:"Mouse Over Clarity of Vision:",min:0,max:1,step:0.1,value:1},
+      {id:"teamspirit",label:"Team Spirit",tooltip:"Mouse Over Team Spirit:",min:0,max:1,step:0.1,value:1},
+      {id:"individualgoals",label:"Alignment",tooltip:"Mouse Over Alignment",min:0,max:1,step:0.1,value:1},
+      {id:"transparency",label:"Transparency",tooltip:"Mouse Over Transparency:",min:0,max:100,step:10,value:90},
+      {id:"boid-limit",label:"Organisation size",tooltip:"Mouse Over Organisation Size:",min:10,max:1000,step:10,value:100},
+      ]
+      var myTable=document.getElementById("Controls")
+
+      for (var i in controls)
+      {
+        var item=controls[i]
+      var myRow=myTable.insertRow(0)
+      var myTH1=document.createElement("th")
+      myTH1.innerHTML=item.label+': <span class="tooltip">'+item.tooltip+'</span>'
+      myTH1.align="left"
+      myRow.appendChild(myTH1)
+      
+      var myTH2=document.createElement("th")
+      myTH2.innerHTML='<input type="range" id="'+item.id+'" min="'+item.min+'" max="'+item.max+'" step="'+item.step+'" value="'+item.value+'"></input>' 
+      myRow.appendChild(myTH2)
+      }
+//      myCell1.innerHTML=myLabel+': <span class="tooltip">'+myTooltip+'</span>'
+    }
+   </script>
+    </div>
+  </body>
+</html>
