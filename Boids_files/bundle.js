@@ -4,6 +4,8 @@ var fps = require('fps')
   , debounce = require('debounce')
   , Boids = require('./')
 
+var controls
+
 var attractors = [[
     Infinity // x
   , Infinity // y
@@ -24,21 +26,25 @@ var canvas = document.createElement('canvas')
 
 var lastGoalPosition={x:window.innerWidth/2+10,y:window.innerHeight/2+11}
 
- //var canvas = document.getElementById('canvas');
+canvas.onclick = function(e) {
 
- canvas.onclick = function(e) {
+//  alert(e.pageX + " . " + e.pageY);
 
-   // alert(e.x + " . " + e.y);
-    lastGoalPosition={x:e.x, y:e.y}
+//    lastGoalPosition={x:e.x, y:e.y}
+lastGoalPosition={x:e.pageX, y:e.pageY}
+drawCircleAt(lastGoalPosition.x,lastGoalPosition.y)
+var halfHeight = canvas.height/2
+, halfWidth = canvas.width/2
 
-    drawCircleAt(lastGoalPosition.x,lastGoalPosition.y)
-   var halfHeight = canvas.height/2
-     , halfWidth = canvas.width/2
+attractors[0][0] = e.pageX - halfWidth
+attractors[0][1] = e.pageY - halfHeight
 
-   attractors[0][0] = e.x - halfWidth
-   attractors[0][1] = e.y - halfHeight
+//   attractors[0][0] = e.x - halfWidth
+//   attractors[0][1] = e.y - halfHeight
 //   alert(e.x + " " + e.y)
- }
+}
+
+
 
 function drawCircleAt(x,y){
       var context = canvas.getContext('2d');
@@ -403,12 +409,7 @@ function Boids(opts, callback) {
   this.accelerationLimitRoot = opts.accelerationLimit || 1
   this.speedLimit = Math.pow(this.speedLimitRoot, 2)
   this.accelerationLimit = Math.pow(this.accelerationLimitRoot, 5)
-  this.separationDistance = Math.pow(opts.separationDistance || 40, 2)
-  this.alignmentDistance = Math.pow(opts.alignmentDistance || 100, 2)
-  this.cohesionDistance = Math.pow(opts.cohesionDistance || 400, 2)
-  this.separationForce = opts.separationForce || 0.01
-  this.cohesionForce = opts.cohesionForce || 1
-  this.alignmentForce = opts.alignmentForce || opts.alignment || 1
+  this.alignmentDistance = Math.pow(opts.alignmentDistance || 200, 2)
   this.attractors = opts.attractors || []
 
   var boids = this.boids = []
@@ -428,28 +429,15 @@ inherits(Boids, EventEmitter)
 
 Boids.prototype.tick = function() {
 
-  var individualgoals = 1 - document.getElementById("individualgoals").value 
-  var teamspirit = document.getElementById('teamspirit').value 
-  var vision = 1 - document.getElementById('vision').value 
-  var transparency = document.getElementById('transparency').value
-  var focus = 100 - document.getElementById('focus').value // checked?1:150
-//  var experimentation =document.getElementById('experimentation').checked?5:0.1
-
-  this.separationForce = individualgoals 
-  this.cohesionForce = teamspirit 
-  this.cohesionDistance= Math.pow(transparency,2)
-  this.separationDistance =Math.pow(focus,2)
-  this.alignmentForce=vision
-//  this.accelerationLimit = Math.pow(0.1 , experimentation)
-//  this.alignmentDistance=10000-transparency
+  applyControls();
 
   var boids = this.boids
-    , sepDist = this.separationDistance
-    , sepForce = this.separationForce
-    , cohDist = this.cohesionDistance
-    , cohForce = this.cohesionForce
+    , sepDist = controls.focus
+    , sepForce = controls.alignment 
+    , cohDist = controls.transparency
+    , cohForce = controls.teamspirit
     , aliDist = this.alignmentDistance
-    , aliForce = this.alignmentForce
+    , aliForce = controls.vision
     , speedLimit = this.speedLimit
     , accelerationLimit = this.accelerationLimit
     , accelerationLimitRoot = this.accelerationLimitRoot

@@ -134,7 +134,7 @@ a {
 }
 #text {
   position:absolute;
-  max-width:300px;
+  max-width:325px;
   top:16px;
   left:16px;
   background-color:rgba(255,241,235,0.55);
@@ -153,8 +153,25 @@ th:hover span.tooltip {
   position:absolute;
   top:250px;
   left:0px;
-  height: 240px;
-  width: 300px;
+  height: 150px;
+  width: 320px;
+  display:inline;
+  border:2px solid green;
+  background-color: white;
+  font-size: 12px;
+}
+
+
+div span.tooltipD {
+    display:none;
+}
+
+div:hover span.tooltipD {
+  position:absolute;
+  top:380px;
+  left:0px;
+  height: 50px;
+  width: 320px;
   display:inline;
   border:2px solid green;
   background-color: white;
