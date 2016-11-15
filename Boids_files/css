@@ -110,3 +110,53 @@
   src: local('Roboto Slab Thin'), local('RobotoSlab-Thin'), url(http://fonts.gstatic.com/s/robotoslab/v6/MEz38VLIFL-t46JUtkIEgNFPPhm6yPYYGACxOp9LMJ4.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
+
+
+html, body {
+  margin:0;
+  padding:0;
+  font-family:'Open Sans', Helvetica, Arial, sans-serif;
+  color:#543D5E;
+  color:rgba(4,61,94,0.75);
+  background-color:#2CF1EB;
+}
+#title {
+  color:#543D5E;
+  font-size:1.5em;
+  color:rgba(84,61,94,0.9);
+  font-family: 'Roboto Slab', 'Times New Roman', Times, serif;
+  margin:0; padding:0;
+}
+a {
+  color:rgba(84,61,94,0.9);
+  text-decoration:none;
+  border-bottom:1px dotted #543D5E;
+}
+#text {
+  position:absolute;
+  max-width:300px;
+  top:16px;
+  left:16px;
+  background-color:rgba(255,241,235,0.55);
+  box-shadow:0 0 15px 5px rgba(32,241,235,0.55);
+}
+.source {
+  margin-bottom:0.5em;
+  font-size:12px;
+}
+
+th span.tooltip {
+    display:none;
+}
+
+th:hover span.tooltip {
+  position:absolute;
+  top:250px;
+  left:0px;
+  height: 240px;
+  width: 300px;
+  display:inline;
+  border:2px solid green;
+  background-color: white;
+  font-size: 12px;
+}
