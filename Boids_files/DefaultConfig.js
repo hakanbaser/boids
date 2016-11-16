@@ -52,7 +52,7 @@ var controls=[
 
 {
   id:"boid-limit",
-  label:"Organisation size",min:10,max:500,step:50,value:100,
+  label:"Organisation size",min:10,max:500,step:10,value:100,
   tooltip:
   "How big the organization is.<br>\
   <br>\

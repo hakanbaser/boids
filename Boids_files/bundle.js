@@ -30,7 +30,6 @@ canvas.onclick = function(e) {
 
 //  alert(e.pageX + " . " + e.pageY);
 
-//    lastGoalPosition={x:e.x, y:e.y}
 lastGoalPosition={x:e.pageX, y:e.pageY}
 drawCircleAt(lastGoalPosition.x,lastGoalPosition.y)
 var halfHeight = canvas.height/2
@@ -39,12 +38,7 @@ var halfHeight = canvas.height/2
 attractors[0][0] = e.pageX - halfWidth
 attractors[0][1] = e.pageY - halfHeight
 
-//   attractors[0][0] = e.x - halfWidth
-//   attractors[0][1] = e.y - halfHeight
-//   alert(e.x + " " + e.y)
 }
-
-
 
 function drawCircleAt(x,y){
       var context = canvas.getContext('2d');
