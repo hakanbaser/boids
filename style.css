@@ -153,12 +153,13 @@ th:hover span.tooltip {
   position:absolute;
   top:250px;
   left:0px;
-  height: 200px;
+  height: 220px;
   width: 320px;
   display:inline;
   border:2px solid green;
   background-color: white;
   font-size: 12px;
+  padding-left: 4px
 }
 
 div span.tooltipD {
@@ -167,9 +168,9 @@ div span.tooltipD {
 
 div:hover span.tooltipD {
   position:absolute;
-  top:420px;
+  top:450px;
   left:0px;
-  height: 50px;
+  height: 70px;
   width: 320px;
   display:inline;
   border:2px solid green;

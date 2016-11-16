@@ -5,9 +5,10 @@ var controls=[
   label:"Execution Focus",min:0,max:1,step:0.1,value:0.8,
   tooltip:
   "How focused people work.<br>\
-  Percent of capacity invested into achieving the defined goals.<br>\
-  <u>Left</u> = None.<br>\
-  <u>Right</u> = All.",
+   Percent of capacity invested into achieving the defined goals.<br>\
+   <br>\
+   <u>Left</u> = None.<br>\
+   <u>Right</u> = All.",
 },
 
 {
@@ -16,8 +17,9 @@ var controls=[
   tooltip:
   "How clear and actionable is the vision of the team.<br>\
   Percent of capacity invested into figuring out the defined goals.<br>\
-  <u>Left</u> = All.<br>\
-  <u>Right</u> = None.",
+  <br>\
+  <u>Left</u> = All<br>\
+  <u>Right</u> = None",
 },
 
 { 
@@ -26,8 +28,9 @@ var controls=[
  tooltip:
  "How well people collaborate.<br>\
  Percent of capacity invested into personal goals versus shared goals.<br>\
- <u>Left</u> = Fighting against each other.<br>\
- <u>Right</u> = Contributing to shared goals.",
+ <br>\
+ <u>Left</u> = Fighting against each other<br>\
+ <u>Right</u> = Contributing to shared goals",
 },
 
 {
@@ -36,8 +39,9 @@ var controls=[
   tooltip:
   "How well are the goals aligned.<br>\
   Amount of different goals existing in the organization.<br>\
-  <u>Left</u> = Everybody has personal goals.<br>\
-  <u>Right</u> = There is only one goal.",
+  <br>\
+  <u>Left</u> = Everybody has personal goals<br>\
+  <u>Right</u> = There is only one goal",
 },
 
 {
@@ -46,8 +50,9 @@ var controls=[
   tooltip:
   "How well do people understand what is going on.<br>\
   Percent of capacity invested figuring out what is happening around.<br>\
-  <u>Left</u> = Each individual knows nothing.<br>\
-  <u>Right</u> = Everybody knows everything.",
+  <br>\
+  <u>Left</u> = Each individual knows nothing<br>\
+  <u>Right</u> = Everybody knows everything",
 },
 
 {
@@ -56,7 +61,7 @@ var controls=[
   tooltip:
   "How big the organization is.<br>\
   <br>\
-  <u>Left</u> = 10<br>\
-  <u>Right</u> = 500",
+  <u>Left</u> = 10 people<br>\
+  <u>Right</u> = 500 people",
 },
 ]

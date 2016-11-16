@@ -10,30 +10,33 @@
   <article role="main" id="text"> 
     <h1 id="title">Organisation Simulator</h1>
     <p></p>
-      <div>
+    <div>
       <table id="Controls">
-       </table>
-      </div>
-        <p></p>
-        <div>
-          Hover over the description to learn what the sliders do.<p>
-          Click on the simulation area to define a new goal.<p>
+      </table>
+    </div>
+    <p></p>
+    <div>
+      Hover over the description to learn what the sliders do.<p>
+      Right now <strong id="data-count">1</strong> people are doing their best
+      to reach the goal in the organisation you have created.<p>
 
-          Right now you're watching <strong id="data-count">1</strong> boids being
-          simulated at <strong id="data-fps">60</strong> frames per second.
-          <p></p>
-        </div>
-       <div class="tooltipD">
-        <p class="source">
-          more information
-          <span class="tooltipD">This simulator for organizational behaviour is based on Craig Reynolds'
-        <a href="http://en.wikipedia.org/wiki/Boids">Boids</a> algorithm. <a href="http://github.com/hughsk/boids">Original Source on GitHub</a><br /></span>
+      Click on the simulation area to define a new goal.
+      
+      <p></p>
+    </div>
+    <div class="tooltipD">
+      <p class="source">
+        more information
+        <span class="tooltipD">This simulator for organizational behaviour is based on Craig Reynolds'
+          <a href="http://en.wikipedia.org/wiki/Boids">Boids</a> algorithm 
+          <br/>Simulation speed: <strong id="data-fps">60</strong> frames per second
+          <br/> <a href="http://github.com/hughsk/boids">Original Source on GitHub</a><br /></span>
         </p>
-        </div>
-   </article>
+      </div>
+    </article>
     <div>
       <script type="text/javascript" src="./ScriptLoader.js"></script>
       <script type="text/javascript" id="drawing-area" src="./BrowserInit.js"></script>
     </div>
   </body>
-</html>
+  </html>
