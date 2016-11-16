@@ -2,7 +2,7 @@
 var controls=[
 {
   id:"focus",
-  label:"Execution Focus",min:0,max:100,step:10,value:80,
+  label:"Execution Focus",min:0,max:1,step:0.1,value:0.8,
   tooltip:
   "How focused people work.<br>\
   Percent of capacity invested into achieving the defined goals.<br>\
@@ -42,7 +42,7 @@ var controls=[
 
 {
   id:"transparency",
-  label:"Transparency",min:0,max:100,step:10,value:90,
+  label:"Transparency",min:0,max:1,step:0.1,value:0.9,
   tooltip:
   "How well do people understand what is going on.<br>\
   Percent of capacity invested figuring out what is happening around.<br>\
