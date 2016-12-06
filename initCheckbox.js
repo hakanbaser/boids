@@ -22,7 +22,7 @@ function initCheckbox(){
     myRow.appendChild(myTH1)
   }
 
-  inhalt()
+ // inhalt()
 }
 
 function checkBoxVisible(cat){
