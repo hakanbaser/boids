@@ -29,4 +29,8 @@ if (location.search.substr(1).split("&") != ""){
 }
 }
 
+  var errordef=document.getElementById("info-text")
+  errordef.innerHTML='Hover over the description to learn what the sliders do.<p>Right now <strong id="data-count">1</strong> people are doing their best to reach the goal in the organisation you have created.<p>Click on the simulation area to define a new goal.'
+
+
 initConfig()
