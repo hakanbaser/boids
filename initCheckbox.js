@@ -2,45 +2,43 @@
 var factorsMax={TR:0,AL:0,TS:0,CV:0,EF:0}
 var factorSubFactors={TR:0,AL:0,TS:0,CV:0,EF:0}
 var factorsSumAll={TR:0,AL:0,TS:0,CV:0,EF:0}
-// var output = [], itemHa;
+
 function initCheckbox(){
   var myTable=document.getElementById("boxen")
-  
-  for (var i in defaultChecklist)
-  {
-    var item=defaultChecklist[i]
+
+  defaultChecklist.forEach(function(item) {
     defineFactorAttribution(item)
 
     var myRow=myTable.insertRow(-1)
+    myRow.id= "ROW-" + item.id
+ //   myRow.style.height=0
     var myTH1=document.createElement("th")
     myTH1.innerHTML='<input type="checkbox" onclick="checkBoxVisible(this);" " name="'+ item.id+'"></input>' + ' ' + item.label
     myTH1.align="left"
-    myTH1.id= "ROW-" + item.id
-    if (item.SubCategory){
-      myTH1.style.visibility = "hidden"
-    }
+    myTH1.id= "FIELD-" + item.id
     myRow.appendChild(myTH1)
-  }
-
- // inhalt()
+    if (item.SubCategory){
+      myRow.style.display="none"
+    }
+    });  
 }
 
 function checkBoxVisible(cat){
- var targetVisibility=(cat.checked)?"visible":"hidden"
- var chekboxStat = (cat.checked)?1:0
+ var targetVisibility=(cat.checked)?"table-row":"none"
  var myCat =  getCheckBoxID (cat)
- setVisibility (myCat, targetVisibility)
- SumOfFactors(cat, chekboxStat)
+ var checkboxSubCatagory = getCorospendingToCheckbox(cat)
+ setVisibility (myCat, targetVisibility, checkboxSubCatagory)
+ SumOfFactors(cat, targetVisibility)
 }
 
 function getCheckBoxID (cat) {
-  for (var x in defaultChecklist)
-  { 
-    var all = defaultChecklist[x]
+  var result
+  defaultChecklist.forEach(function(all) {
     if ((all.id == cat.name)) {
-      return all.category
+      result = all.category
     }
-  }
+  });
+ return result
 }
 
 function defineFactorAttribution (checkItem) {
@@ -52,53 +50,59 @@ function defineFactorAttribution (checkItem) {
 }
 
 function SumOfFactors(cat, checkStatus){
-  for (var x in defaultChecklist) {
-   all = defaultChecklist[x]
+  defaultChecklist.forEach(function(all) {
    if (cat.name == all.id) {
     for (var y in all.factor) {
      factorSubFactors[y] = all.factor[y]
-     if (checkStatus) {
-       factorsSumAll[y]  += checkStatus * factorSubFactors[y]
-     }
+     if (checkStatus == "table-row") {
+       factorsSumAll[y]  += 1 * factorSubFactors[y]
+      }
       else
-     {
+      {
         factorsSumAll[y]  -= factorSubFactors[y]
-     }
-    // alert("Status " + checkStatus  +  " factor " + factorSubFactors[y] + " Summe " + factorsSumAll[y] + " FactorMax " + factorsMax[y] + " Ergebnis " + factorsSumAll[y]/factorsMax[y])
-  //   alert("Status " + checkStatus  + " FactorMax " + factorsMax[y] + " Ergebnis " + factorsSumAll[y]/factorsMax[y])
-     }
-
+      }
+     // alert("Status " + checkStatus  +  " factor " + factorSubFactors[y] + " Summe " + factorsSumAll[y] + " FactorMax " + factorsMax[y] + " Ergebnis " + factorsSumAll[y]/factorsMax[y])
+     // alert("Status " + checkStatus  + " FactorMax " + factorsMax[y] + " Ergebnis " + factorsSumAll[y]/factorsMax[y])
     }
-  }
-}
+   }
+  });
+ }
 
-function setVisibility (cat, targetVisibility) {
-  for (var x in defaultChecklist)
-  { 
-    var all = defaultChecklist[x]
-    if ((all.category == cat && all.SubCategory)) {
-      document.getElementById("ROW-"+all.id).style.visibility = targetVisibility
+function getCorospendingToCheckbox (cat) {
+  var result
+  defaultChecklist.forEach(function(all) {
+    if ((all.id == cat.name)) {
+      result = all.SubCategory
     }
-  }
+  });
+ return result
 }
 
-// Test
-
-function inhalt(){
-
-defaultChecklist.forEach(function(m,i){
-
-alert("checklist " + i)
-
-for(ein in m){
-
-  alert(m[ein])
-
-  }
-
-});
+function setVisibility (myCat, targetVisibility, checkboxSubCatagory) {
+ if (checkboxSubCatagory) {return}
+  defaultChecklist.forEach(function(all) {
+    if ((all.category == myCat && all.SubCategory)) {
+      document.getElementById("ROW-"+all.id).style.display = targetVisibility
+    }
+ 
+  });
 }
 
-//TestEnde
+function returnValuesTosetBackOrgaSim (){
+// ?focus=0.5&vision=0.5&teamspirit=0.7&alignment=0.5&transparency=0.7&boid-limit=100
+// TR:0,AL:0,TS:0,CV:0,EF:0
+var paramString = "?"
+paramString += "focus=" + factorsSumAll.EF/factorsMax.EF
+paramString += "&vision=" + factorsSumAll.CV/factorsMax.CV
+paramString += "&teamspirit=" + factorsSumAll.TS/factorsMax.TS
+paramString += "&alignment=" + factorsSumAll.AL/factorsMax.AL
+paramString += "&transparency=" + factorsSumAll.TR/factorsMax.TR
+paramString += "&boid-limit=100"
+
+//window.open("file:///C:/Users/hbaser/Meine-Daten/Boids/Boids/OrganisationSim.html"+ paramString)
+window.open("http://www.scrumakademie.org/wp-content/uploads/2017/01/OrganisationSim.html" + paramString)
+// alert(paramString)
+}
+
 
 initCheckbox()
