@@ -2,9 +2,9 @@ function initConfig(){
 
   var myTable=document.getElementById("Controls")
 
-  for (var i in controls)
+  for (var i in defControls)
   {
-    var item=controls[i]
+    var item=defControls[i]
     var myRow=myTable.insertRow(0)
     var myTH1=document.createElement("th")
     myTH1.innerHTML=item.label+': <span class="tooltip">'+item.tooltip+'</span>'
@@ -25,7 +25,7 @@ if (location.search.substr(1).split("&") != ""){
     controlVar.value = item.split("=")[1]
     controlVar.reload
 
-  })
+  });
 }
 }
 

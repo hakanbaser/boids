@@ -1,5 +1,5 @@
    
-var controls=[
+var defControls=[
 {
   id:"focus",
   label:"Execution Focus",min:0,max:1,step:0.1,value:0.8,
