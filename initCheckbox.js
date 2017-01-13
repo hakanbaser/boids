@@ -11,12 +11,11 @@ function initCheckbox(){
 
     var myRow=myTable.insertRow(-1)
     myRow.id= "ROW-" + item.id
- //   myRow.style.height=0
-    var myTH1=document.createElement("th")
-    myTH1.innerHTML='<input type="checkbox" onclick="checkBoxVisible(this);" " name="'+ item.id+'"></input>' + ' ' + item.label
-    myTH1.align="left"
-    myTH1.id= "FIELD-" + item.id
-    myRow.appendChild(myTH1)
+    var myTD1=document.createElement("td")
+    myTD1.innerHTML='<input type="checkbox" onclick="checkBoxVisible(this);" " name="'+ item.id+'"></input>' + ' ' + item.label
+    myTD1.align="left"
+    myTD1.id= "FIELD-" + item.id
+    myRow.appendChild(myTD1)
     if (item.SubCategory){
       myRow.style.display="none"
     }
@@ -83,6 +82,7 @@ function setVisibility (myCat, targetVisibility, checkboxSubCatagory) {
   defaultChecklist.forEach(function(all) {
     if ((all.category == myCat && all.SubCategory)) {
       document.getElementById("ROW-"+all.id).style.display = targetVisibility
+      document.getElementById("FIELD-"+all.id).style="padding-left:20px"
     }
  
   });
